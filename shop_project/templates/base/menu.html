@@ -1,0 +1,32 @@
+<nav class="colorlib-nav" role="navigation">
+    <div class="top-menu">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-2">
+                    <div id="colorlib-logo"><a href="/">Store</a></div>
+                </div>
+                <div class="col-xs-10 text-right menu-1">
+                    <ul>
+                        <li class="active"><a href="/">Home</a></li>
+                        {% if user.is_authenticated %}
+                            <li><a href="/accounts/logout/">Logout <span style="color: #00b3ee">{{ user.username }}</span></a></li>
+                        {% else %}
+                            <li><a href="/accounts/login/">Login</a></li>
+                        {% endif %}
+
+                        {% if user.is_authenticated %}
+                        <li><a href="{% url 'cart_item' %}"><i class="icon-shopping-cart"></i> Cart [?]</a></li>
+                        {% endif %}
+                        <li>
+                            <form method="get" action="{% url 'search' %}">
+<!--                                {% csrf_token %}-->
+                                <input type="text" value="" name="search" placeholder="Поиск">
+                                <button class="small" type="submit">Найти</button>
+                            </form>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
